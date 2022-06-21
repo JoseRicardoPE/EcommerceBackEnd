@@ -46,11 +46,11 @@ const publicController = {
           const token = jwt.sign({user}, 'kjabdljvCHA73R6273RFsdf');
           res.json(token)
         } else {
-          res.send("error")
+          res.json({message : "Usuario o Contraseña Incorrectos"})
         }
       });
     } else {
-      res.send("error");
+      res.json({message : "Usuario o Contraseña Incorrectos"});
     }
   },
 };
