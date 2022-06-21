@@ -1,5 +1,6 @@
 const db = require("../models");
 const sequelize = require("sequelize");
+const bcrypt = require("bcryptjs");
 
 const publicController = {
   test: (req, res) => {
@@ -22,7 +23,7 @@ const publicController = {
     res.json(productsByTag);
   },
 
-  imagesByProductId:async (req, res) => {
+  imagesByProductId: async (req, res) => {
     const imagesFromProduct = await db.ProductImages.findAll({
       where: { productId: req.params.productId },
     });
@@ -34,6 +35,21 @@ const publicController = {
       where: { isOutsiding: true },
     });
     res.json(productsByOutsiding);
+  },
+  
+  login: async (req, res) => {
+    const user = await db.User.findOne({ where: { email: req.body.email } });
+    if (user) {
+      bcrypt.compare(req.body.password, user.password, function (err, check) {
+        if (check) {
+          res.json(user)
+        } else {
+          res.send("error")
+        }
+      });
+    } else {
+      res.send("error");
+    }
   },
 };
 
