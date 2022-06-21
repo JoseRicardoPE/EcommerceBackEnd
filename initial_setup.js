@@ -7,7 +7,9 @@ module.exports = async () => {
   console.log("[Database] ¡Las tablas fueron creadas!");
 
   // Ejecutar seeders (datos de prueba):
-  //await require("./seeders/roleSeeder")();
-  //console.log("[Database] ¡Los datos de prueba fueron insertados!");
-  //console.log("[Server] Carga completada! Se puede navegar!");
+  await require("./seeders/tagSeeder")();
+  await require("./seeders/productSeeder")();
+  await require("./seeders/userSeeder")();
+  console.log("[Database] ¡Los datos de prueba fueron insertados!");
+  console.log("[Server] Carga completada! Se puede navegar!");
 };
