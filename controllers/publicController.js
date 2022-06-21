@@ -1,8 +1,8 @@
-require('dotenv').config()
+require("dotenv").config();
 const db = require("../models");
 const sequelize = require("sequelize");
 const bcrypt = require("bcryptjs");
-var jwt = require('jsonwebtoken');
+var jwt = require("jsonwebtoken");
 
 const publicController = {
   test: (req, res) => {
@@ -38,20 +38,47 @@ const publicController = {
     });
     res.json(productsByOutsiding);
   },
-  
+
   login: async (req, res) => {
     const user = await db.User.findOne({ where: { email: req.body.email } });
     if (user) {
       bcrypt.compare(req.body.password, user.password, function (err, check) {
         if (check) {
-          const token = jwt.sign({user}, process.env.JWT_SECURE_STRING);
-          res.json(token)
+          const token = jwt.sign({ user }, process.env.JWT_SECURE_STRING);
+          res.json(token);
         } else {
-          res.json({message : "Usuario o Contraseña Incorrectos"})
+          res.json({ message: "Usuario o Contraseña Incorrectos" });
         }
       });
     } else {
-      res.json({message : "Usuario o Contraseña Incorrectos"});
+      res.json({ message: "Usuario o Contraseña Incorrectos" });
+    }
+  },
+  register: async (req, res) => {
+    const { firstname, lastname, email, password, phone, address, isAdmin } =
+      req.body;
+    if (
+      firstname &&
+      lastname &&
+      email &&
+      password &&
+      phone &&
+      address &&
+      isAdmin
+    ) {
+      const newUser = await db.User.create({
+        firstname,
+        lastname,
+        email,
+        password,
+        phone,
+        address,
+        isAdmin,
+      });
+      const token = jwt.sign({ newUser }, process.env.JWT_SECURE_STRING);
+      res.json(token);
+    } else {
+      res.json({ message: "Todos los campos son obligatorios" });
     }
   },
 };
