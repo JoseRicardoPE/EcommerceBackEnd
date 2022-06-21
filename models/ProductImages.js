@@ -7,6 +7,7 @@ module.exports = function (sequelize, Model, DataTypes) {
         autoIncrement: true,
         primaryKey: true,
       },
+      path: DataTypes.STRING(200),
     },
     {
       sequelize,
