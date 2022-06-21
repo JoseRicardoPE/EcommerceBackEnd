@@ -66,17 +66,37 @@ const publicController = {
       address &&
       isAdmin
     ) {
-      const newUser = await db.User.create({
-        firstname,
-        lastname,
-        email,
-        password,
-        phone,
-        address,
-        isAdmin,
-      });
-      const token = jwt.sign({ newUser }, process.env.JWT_SECURE_STRING);
-      res.json(token);
+      try {
+        const newUser = await db.User.create({
+          firstname,
+          lastname,
+          email,
+          password,
+          phone,
+          address,
+          isAdmin,
+        });
+        const token = jwt.sign({ newUser }, process.env.JWT_SECURE_STRING);
+        res.json(token);
+      } catch (error) {
+        res.json(error);
+      }
+    } else {
+      res.json({ message: "Todos los campos son obligatorios" });
+    }
+  },
+
+  newPassword: async (req, res) => {
+    const { userId, password } = req.body;
+    if (password && userId) {
+      try {
+        const user = await db.User.findByPk(userId);
+        user.password = password;
+        await user.save();
+        res.json({ message: "Contraseña cambiada exitosamente" });
+      } catch (error) {
+        res.json(error);
+      }
     } else {
       res.json({ message: "Todos los campos son obligatorios" });
     }
