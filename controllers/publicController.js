@@ -22,12 +22,12 @@ const publicController = {
     res.json(productsByTag);
   },
 
-  // imagesByProductId:async (req, res) => {
-  //   const productsByTag = await db.Product.findAll({
-  //     where: { tagId: req.params.tagId },
-  //   });
-  //   res.json(productsByTag);
-  // },
+  imagesByProductId:async (req, res) => {
+    const imagesFromProduct = await db.ProductImages.findAll({
+      where: { productId: req.params.productId },
+    });
+    res.json(imagesFromProduct);
+  },
 
   productByOutsiding: async (req, res) => {
     const productsByOutsiding = await db.Product.findAll({
