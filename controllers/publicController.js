@@ -1,3 +1,4 @@
+require('dotenv').config()
 const db = require("../models");
 const sequelize = require("sequelize");
 const bcrypt = require("bcryptjs");
@@ -43,7 +44,7 @@ const publicController = {
     if (user) {
       bcrypt.compare(req.body.password, user.password, function (err, check) {
         if (check) {
-          const token = jwt.sign({user}, 'kjabdljvCHA73R6273RFsdf');
+          const token = jwt.sign({user}, process.env.JWT_SECURE_STRING);
           res.json(token)
         } else {
           res.json({message : "Usuario o Contraseña Incorrectos"})
