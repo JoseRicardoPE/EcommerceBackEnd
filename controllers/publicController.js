@@ -95,7 +95,7 @@ const publicController = {
         await user.save();
         res.json({ message: "Contraseña cambiada exitosamente" });
       } catch (error) {
-        res.json(error);
+        res.json({ message: "Error al cambiar la contraseña" });
       }
     } else {
       res.json({ message: "Todos los campos son obligatorios" });
