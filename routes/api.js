@@ -4,7 +4,7 @@ const {
   showAllProduct,
   productById,
   productByTagId,
-  //   imagesByProductId,
+  imagesByProductId,
   productByOutsiding,
 } = require("../controllers/publicController");
 
@@ -16,6 +16,6 @@ router.get("/product/:productId", productById);
 
 router.get("/product/tag/:tagId", productByTagId);
 
-// router.get("/images/:productId", imagesByProductId);
+router.get("/images/:productId", imagesByProductId);
 
 module.exports = router;
