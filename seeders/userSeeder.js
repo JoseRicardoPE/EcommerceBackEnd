@@ -5,13 +5,24 @@ module.exports = async () => {
   users.push({
     firstname: "John",
     lastname: "Doe",
-    email: "john@example.com",
+    password: "111",
+    email: "john@admin.com",
     phone: "123-456-789",
     address: "Avenue 123 43",
     isAdmin: true,
-  });
+  },
+  {
+    firstname: "Ana",
+    lastname: "Smith",
+    password: "111",
+    email: "ana@user.com",
+    phone: "123-456-789",
+    address: "Avenue 123 43",
+    isAdmin: false,
+  },
+  );
+  await User.bulkCreate(users);
 };
 
-await User.bulkCreate(users);
 
 
