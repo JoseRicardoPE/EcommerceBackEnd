@@ -1,6 +1,39 @@
+const db = require("../models");
+const sequelize = require("sequelize");
+
 const publicController = {
   test: (req, res) => {
     res.json("Public Test");
+  },
+
+  showAllProduct: async (req, res) => {
+    const products = await db.Product.findAll();
+    res.json(products);
+  },
+
+  productById: async (req, res) => {
+    const product = await db.Product.findByPk(req.params.productId);
+    res.json(product);
+  },
+  productByTagId: async (req, res) => {
+    const productsByTag = await db.Product.findAll({
+      where: { tagId: req.params.tagId },
+    });
+    res.json(productsByTag);
+  },
+
+  // imagesByProductId:async (req, res) => {
+  //   const productsByTag = await db.Product.findAll({
+  //     where: { tagId: req.params.tagId },
+  //   });
+  //   res.json(productsByTag);
+  // },
+
+  productByOutsiding: async (req, res) => {
+    const productsByOutsiding = await db.Product.findAll({
+      where: { isOutsiding: true },
+    });
+    res.json(productsByOutsiding);
   },
 };
 
