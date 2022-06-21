@@ -15,20 +15,20 @@ const {
   deletePayment
 } = require("../controllers/adminController");
 
-router.get("/c/product", createProduct);
-router.get("/u/product", updateProduct);
+router.post("/c/product", createProduct);
+router.post("/u/product", updateProduct);
 router.get("/d/product", deleteProduct);
 
-router.get("/c/image", createImage);
-router.get("/u/image", updateImage);
+router.post("/c/image", createImage);
+router.post("/u/image", updateImage);
 router.get("/d/image", deleteImage);
 
-router.get("/c/tag", createTag);
-router.get("/u/tag", updateTag);
+router.post("/c/tag", createTag);
+router.post("/u/tag", updateTag);
 router.get("/d/tag", deleteTag);
 
-router.get("/c/payment", createPayment);
-router.get("/u/payment", updatePayment);
+router.post("/c/payment", createPayment);
+router.post("/u/payment", updatePayment);
 router.get("/d/payment", deletePayment);
 
 module.exports = router;
