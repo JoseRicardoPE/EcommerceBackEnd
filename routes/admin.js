@@ -16,19 +16,19 @@ const {
 } = require("../controllers/adminController");
 
 router.post("/c/product", createProduct);
-router.post("/u/product", updateProduct);
-router.get("/d/product", deleteProduct);
+router.post("/u/product/:id", updateProduct);
+router.get("/d/product/:id", deleteProduct);
 
 router.post("/c/image", createImage);
-router.post("/u/image", updateImage);
-router.get("/d/image", deleteImage);
+router.post("/u/image/:id", updateImage);
+router.get("/d/image/:id", deleteImage);
 
 router.post("/c/tag", createTag);
-router.post("/u/tag", updateTag);
-router.get("/d/tag", deleteTag);
+router.post("/u/tag/:id", updateTag);
+router.get("/d/tag/:id", deleteTag);
 
 router.post("/c/payment", createPayment);
-router.post("/u/payment", updatePayment);
-router.get("/d/payment", deletePayment);
+router.post("/u/payment/:id", updatePayment);
+router.get("/d/payment/:id", deletePayment);
 
 module.exports = router;
