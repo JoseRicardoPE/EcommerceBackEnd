@@ -1,7 +1,23 @@
+// createProduct,
+// updateProduct,
+// deleteProduct,
+
+// createImage,
+// updateImage,
+// deleteImage,
+
+// createTag,
+// updateTag,
+// deleteTag,
+
+// createPayment,
+// updatePayment,
+// deletePayment
+
+//NO HACER COMMIT DE LOS CAMBIOS !
+const db = require("../models")
 const publicController =  {
-    test : (req, res) => {
-      res.json("Admin Test");
-    }
+
 }
 
 module.exports = publicController
