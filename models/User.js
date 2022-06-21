@@ -1,3 +1,5 @@
+const bcrypt = require("bcryptjs");
+
 module.exports = function (sequelize, Model, DataTypes) {
   class User extends Model {}
   User.init(
