@@ -1,6 +1,7 @@
 const db = require("../models");
 const sequelize = require("sequelize");
 const bcrypt = require("bcryptjs");
+var jwt = require('jsonwebtoken');
 
 const publicController = {
   test: (req, res) => {
@@ -42,7 +43,8 @@ const publicController = {
     if (user) {
       bcrypt.compare(req.body.password, user.password, function (err, check) {
         if (check) {
-          res.json(user)
+          const token = jwt.sign({user}, 'kjabdljvCHA73R6273RFsdf');
+          res.json(token)
         } else {
           res.send("error")
         }
