@@ -1,7 +1,7 @@
-const publicController =  {
-    test : (req, res) => {
-      res.json("Public Test");
-    }
-}
+const publicController = {
+  test: (req, res) => {
+    res.json("Public Test");
+  },
+};
 
-module.exports = publicController
+module.exports = publicController;

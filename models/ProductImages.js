@@ -10,7 +10,7 @@ module.exports = function (sequelize, Model, DataTypes) {
     },
     {
       sequelize,
-      modelName: "user",
+      modelName: "productImages",
     }
   );
   return ProductImages;
