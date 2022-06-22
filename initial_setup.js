@@ -11,6 +11,8 @@ module.exports = async () => {
   await require("./seeders/productSeeder")();
   await require("./seeders/imageSeeder")();
   await require("./seeders/userSeeder")();
+  await require("./seeders/paymentSeeder")();
+
   console.log("[Database] ¡Los datos de prueba fueron insertados!");
   console.log("[Server] Carga completada! Se puede navegar!");
 };
