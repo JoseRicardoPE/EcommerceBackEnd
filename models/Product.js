@@ -7,12 +7,30 @@ module.exports = function (sequelize, Model, DataTypes) {
         autoIncrement: true,
         primaryKey: true,
       },
-      name: DataTypes.STRING(200),
-      description: DataTypes.TEXT,
-      path: DataTypes.STRING(200),
-      price: DataTypes.INTEGER,
-      stock: DataTypes.INTEGER,
-      isOutsiding: DataTypes.BOOLEAN(),
+      name: {
+        type: DataTypes.STRING(200),
+        allowNull: false
+      },
+      description: {
+        type: DataTypes.TEXT,
+        allowNull: false
+      },
+      path: {
+        type: DataTypes.TEXT,
+        allowNull: false
+      },
+      price: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+      },
+      stock: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+      },
+      isOutsiding:{
+        type: DataTypes.BOOLEAN(),
+        allowNull: false
+      },
     },
     {
       sequelize,

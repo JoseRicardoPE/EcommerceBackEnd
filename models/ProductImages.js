@@ -7,7 +7,10 @@ module.exports = function (sequelize, Model, DataTypes) {
         autoIncrement: true,
         primaryKey: true,
       },
-      path: DataTypes.STRING(200),
+      path: {
+        type: DataTypes.TEXT,
+        allowNull: false
+      },
     },
     {
       sequelize,

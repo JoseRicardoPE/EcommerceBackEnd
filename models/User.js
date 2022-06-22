@@ -9,13 +9,35 @@ module.exports = function (sequelize, Model, DataTypes) {
         autoIncrement: true,
         primaryKey: true,
       },
-      firstname: DataTypes.STRING(200),
-      lastname: DataTypes.STRING(200),
-      email: { type: DataTypes.STRING(200), unique: true },
-      password: DataTypes.STRING(200),
-      phone: DataTypes.STRING(200),
-      address: DataTypes.STRING(200),
-      isAdmin: DataTypes.BOOLEAN(),
+      firstname: {
+        type: DataTypes.STRING(200),
+        allowNull: false
+      },
+      lastname: {
+        type: DataTypes.STRING(200),
+        allowNull: false
+      },
+      email: {
+        type: DataTypes.STRING(200),
+        allowNull: false,
+        unique: true
+      },
+      password: {
+        type: DataTypes.STRING(200),
+        allowNull: false
+      },
+      phone: {
+        type: DataTypes.STRING(200),
+        allowNull: false
+      },
+      address: {
+        type: DataTypes.STRING(200),
+        allowNull: false
+      },
+      isAdmin: {
+        type: DataTypes.BOOLEAN(),
+        allowNull: false
+      },
     },
     {
       hooks: {
