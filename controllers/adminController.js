@@ -3,23 +3,19 @@ const publicController = {
   createProduct: async (req, res) => {
     const { name, description, path, price, stock, isOutsiding, tagId } =
       req.body;
-    if (name && description && path && price && stock && isOutsiding && tagId) {
-      try {
-        const newProduct = await db.Product.create({
-          name,
-          description,
-          path,
-          price,
-          stock,
-          isOutsiding,
-          tagId,
-        });
-        res.json(newProduct);
-      } catch (error) {
-        res.json({ message: "Error al crear el Producto" });
-      }
-    } else {
-      res.json({ message: "Todos los campos son obligatorios" });
+    try {
+      const newProduct = await db.Product.create({
+        name,
+        description,
+        path,
+        price,
+        stock,
+        isOutsiding,
+        tagId,
+      });
+      res.json(newProduct);
+    } catch (error) {
+      res.json({ message: "Error al crear el Producto" });
     }
   },
 
@@ -28,30 +24,18 @@ const publicController = {
     if (product) {
       const { name, description, path, price, stock, isOutsiding, tagId } =
         req.body;
-      if (
-        name &&
-        description &&
-        path &&
-        price &&
-        stock &&
-        isOutsiding &&
-        tagId
-      ) {
-        product.name = name;
-        product.description = description;
-        product.path = path;
-        product.price = price;
-        product.stock = stock;
-        product.isOutsiding = isOutsiding;
-        product.tagId = tagId;
-        try {
-          await product.save();
-        } catch (error) {
-          res.json({ message: "Error al editar el producto" });
-        }
+      product.name = name;
+      product.description = description;
+      product.path = path;
+      product.price = price;
+      product.stock = stock;
+      product.isOutsiding = isOutsiding;
+      product.tagId = tagId;
+      try {
+        await product.save();
         res.json({ message: "Producto editado exitosamente" });
-      } else {
-        res.json({ message: "Todos los campos son obligatorios" });
+      } catch (error) {
+        res.json({ message: "Error al editar el producto" });
       }
     } else {
       res.json({ message: "Producto no encotrado" });
@@ -69,50 +53,63 @@ const publicController = {
   },
 
   createImage: async (req, res) => {
-    //AGREGAR VALIDACION
-    const {path, productId} = req.body;
-    const newProduct = await db.ProductImages.create({path, productId});
-    res.json(newProduct);
+    const { path, productId } = req.body;
+    try {
+      const newProduct = await db.ProductImages.create({ path, productId });
+      res.json(newProduct);
+    } catch (error) {
+      res.json({ message: "Error al crear la imagen" });
+    }
   },
 
   updateImage: async (req, res) => {
-    //VALIDACIONES
     const id = req.params.id;
-    await db.ProductImages.update(req.body, { where: { id } });
-    res.json({message : "Imagen editada con exito"});
+    try {
+      await db.ProductImages.update(req.body, { where: { id } });
+      res.json({ message: "Imagen editada con exito" });
+    } catch (error) {
+      res.json({ message: "Error al editar la Imagen" });
+    }
   },
 
   deleteImage: async (req, res) => {
-    //VALIDACIONES
     const id = req.params.id;
-    await db.ProductImages.destroy({ where: { id } });
-    res.json({message : "Imagen eliminada con exito"});
+    try {
+      await db.ProductImages.destroy({ where: { id } });
+      res.json({ message: "Imagen eliminada con exito" });
+    } catch (error) {
+      res.json({ message: "Error al eliminar la Imagen" });
+    }
   },
 
   createPayment: async (req, res) => {
-    //validaciones
-    await db.Payment.create({
-      name: req.body.name,
-    });
-    res.json("Se ha creado su método de pago exitosamente!");
+    try {
+      await db.Payment.create({
+        name: req.body.name,
+      });
+      res.json("Se ha creado su método de pago exitosamente!");
+    } catch (error) {
+      res.json({ message: "Error al crear el payment" });
+    }
   },
 
   deletePayment: async (req, res) => {
-    //validaciones
-    const payment = await db.Payment.findByPk(req.params.id)
-    await payment.destroy()
-    res.json({message : "Payment eliminado con exito"})
+    try {
+      const payment = await db.Payment.findByPk(req.params.id);
+      await payment.destroy();
+      res.json({ message: "Payment eliminado con exito" });
+    } catch (error) {
+      res.json({ message: "Error al eliminar el payment" });
+    }
   },
 
   updatePayment: async (req, res) => {
-    //validaciones
     const updatedMethod = { name: req.body.name };
-
     try {
       await db.Payment.update(updatedMethod, { where: { id: req.params.id } });
       res.json("se ha cambiado su método de pago");
     } catch (error) {
-      res.json("error al actualizar, intente de nuevo", error);
+      res.json("error al actualizar el payment, intente de nuevo");
     }
   },
 
@@ -128,7 +125,7 @@ const publicController = {
         res.json(error);
       }
     } else {
-      res.json({message:"Se requiere un nombre"});
+      res.json({ message: "Se requiere un nombre" });
     }
   },
 
@@ -143,9 +140,9 @@ const publicController = {
         }
       );
       if (editTag) {
-        res.json({message:"Tag editada con exito"});
+        res.json({ message: "Tag editada con exito" });
       } else {
-        res.json({message:"Error, no existe este tag"});
+        res.json({ message: "Error, no existe este tag" });
       }
     } catch (error) {
       res.json(error);
@@ -160,15 +157,14 @@ const publicController = {
         },
       });
       if (delTag) {
-        res.json({message:"Tag eliminado cone exito"});
+        res.json({ message: "Tag eliminado cone exito" });
       } else {
-        res.json({message:"Error, no existe este tag"});
+        res.json({ message: "Error, no existe este tag" });
       }
     } catch (error) {
       res.json(error);
     }
   },
-
 };
 
 module.exports = publicController;

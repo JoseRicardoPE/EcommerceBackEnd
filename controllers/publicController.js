@@ -57,32 +57,20 @@ const publicController = {
   register: async (req, res) => {
     const { firstname, lastname, email, password, phone, address, isAdmin } =
       req.body;
-    if (
-      firstname &&
-      lastname &&
-      email &&
-      password &&
-      phone &&
-      address &&
-      isAdmin
-    ) {
-      try {
-        const newUser = await db.User.create({
-          firstname,
-          lastname,
-          email,
-          password,
-          phone,
-          address,
-          isAdmin,
-        });
-        const token = jwt.sign({ newUser }, process.env.JWT_SECURE_STRING);
-        res.json(token);
-      } catch (error) {
-        res.json(error);
-      }
-    } else {
-      res.json({ message: "Todos los campos son obligatorios" });
+    try {
+      const newUser = await db.User.create({
+        firstname,
+        lastname,
+        email,
+        password,
+        phone,
+        address,
+        isAdmin,
+      });
+      const token = jwt.sign({ newUser }, process.env.JWT_SECURE_STRING);
+      res.json(token);
+    } catch (error) {
+      res.json(error);
     }
   },
 
