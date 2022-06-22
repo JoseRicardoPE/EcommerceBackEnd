@@ -44,7 +44,7 @@ module.exports = async () => {
       price: 50,
       stock: Math.floor(Math.random() * (100 - 1)) + 1,
       tagId: 1,
-      isOutsiding: true,
+      isOutsiding: false,
     },
     {
       name: "Decaf Coffee Concentrate",
@@ -55,7 +55,7 @@ module.exports = async () => {
       price: 50,
       stock: Math.floor(Math.random() * (100 - 1)) + 1,
       tagId: 1,
-      isOutsiding: true,
+      isOutsiding: false,
     },
   ];
   await Product.bulkCreate(products);
