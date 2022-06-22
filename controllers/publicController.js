@@ -15,9 +15,18 @@ const publicController = {
   },
 
   productBySlug: async (req, res) => {
-    const product = await db.Product.findOne({where : {slug : req.params.productSlug}});
+    const product = await db.Product.findOne({
+      where: { slug: req.params.productSlug },
+    });
     res.json(product);
   },
+
+  productTags: async (req, res) => {
+    const productTags = await db.Tag.findAll();
+    console.log(productTags);
+    res.json(productTags);
+  },
+
   productByTagId: async (req, res) => {
     const productsByTag = await db.Product.findAll({
       where: { tagId: req.params.tagId },

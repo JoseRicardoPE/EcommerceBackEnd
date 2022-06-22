@@ -9,7 +9,11 @@ module.exports = function (sequelize, Model, DataTypes) {
       },
       name: {
         type: DataTypes.STRING(200),
-        allowNull: false
+        allowNull: false,
+      },
+      path: {
+        type: DataTypes.TEXT,
+        allowNull: false,
       },
     },
     {

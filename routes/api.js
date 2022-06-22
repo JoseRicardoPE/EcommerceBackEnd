@@ -9,6 +9,7 @@ const {
   login,
   register,
   newPassword,
+  productTags,
 } = require("../controllers/publicController");
 
 router.get("/product/all", showAllProduct);
@@ -21,6 +22,7 @@ router.post("/newpassword", newPassword);
 
 router.get("/product/:productSlug", productBySlug);
 
+router.get("/tag", productTags);
 router.get("/product/tag/:tagId", productByTagId);
 
 router.get("/images/:productId", imagesByProductId);
