@@ -11,6 +11,11 @@ module.exports = function (sequelize, Model, DataTypes) {
         type: DataTypes.STRING(200),
         allowNull: false
       },
+      slug: {
+        type: DataTypes.STRING(200),
+        allowNull: false,
+        unique: true
+      },
       description: {
         type: DataTypes.TEXT,
         allowNull: false
@@ -20,7 +25,7 @@ module.exports = function (sequelize, Model, DataTypes) {
         allowNull: false
       },
       price: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.DECIMAL(10, 2), //10 numeros enteros y dos decimales
         allowNull: false
       },
       stock: {

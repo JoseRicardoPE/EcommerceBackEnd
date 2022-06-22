@@ -14,8 +14,8 @@ const publicController = {
     res.json(products);
   },
 
-  productById: async (req, res) => {
-    const product = await db.Product.findByPk(req.params.productId);
+  productBySlug: async (req, res) => {
+    const product = await db.Product.findOne({where : {slug : req.params.productSlug}});
     res.json(product);
   },
   productByTagId: async (req, res) => {

@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const {
   showAllProduct,
-  productById,
+  productBySlug,
   productByTagId,
   imagesByProductId,
   productByOutsiding,
@@ -19,7 +19,7 @@ router.post("/login", login);
 router.post("/register", register);
 router.post("/newpassword", newPassword);
 
-router.get("/product/:productId", productById);
+router.get("/product/:productSlug", productBySlug);
 
 router.get("/product/tag/:tagId", productByTagId);
 

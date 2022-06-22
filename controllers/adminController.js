@@ -1,11 +1,12 @@
 const db = require("../models");
 const publicController = {
   createProduct: async (req, res) => {
-    const { name, description, path, price, stock, isOutsiding, tagId } =
+    const { name, slug, description, path, price, stock, isOutsiding, tagId } =
       req.body;
     try {
       const newProduct = await db.Product.create({
         name,
+        slug,
         description,
         path,
         price,
@@ -22,9 +23,10 @@ const publicController = {
   updateProduct: async (req, res) => {
     const product = await db.Product.findByPk(req.params.id);
     if (product) {
-      const { name, description, path, price, stock, isOutsiding, tagId } =
+      const { name, slug, description, path, price, stock, isOutsiding, tagId } =
         req.body;
       product.name = name;
+      product.slug = slug;
       product.description = description;
       product.path = path;
       product.price = price;
