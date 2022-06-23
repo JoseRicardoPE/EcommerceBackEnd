@@ -15,6 +15,10 @@ module.exports = async () => {
     {
       name: "Makers",
       path: "https://orenscoffee.com/wp-content/uploads/2021/12/Fellow_Grinder-550x550.png",
+    },
+    {
+      name: "Ground Coffee",
+      path: "https://images.unsplash.com/photo-1510776537653-6d0da167186c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
     }
   );
 
