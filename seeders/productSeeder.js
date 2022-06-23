@@ -68,7 +68,7 @@ module.exports = async () => {
       path: "https://cdn.shopify.com/s/files/1/0435/8216/1057/products/frother__0001_DSC06359_720x.jpg?v=1631533003",
       price: 50,
       stock: Math.floor(Math.random() * (100 - 1)) + 1,
-      tagId: 1,
+      tagId: 2,
       isOutsiding: false,
     },
     {
@@ -79,7 +79,7 @@ module.exports = async () => {
       path: "https://cdn.shopify.com/s/files/1/0435/8216/1057/products/acc_0002_Javy_ecommerce-8_720x.jpg?v=1651240739",
       price: 50,
       stock: Math.floor(Math.random() * (100 - 1)) + 1,
-      tagId: 1,
+      tagId: 2,
       isOutsiding: false,
     },
     {
@@ -90,7 +90,7 @@ module.exports = async () => {
       path: "https://cdn.shopify.com/s/files/1/0435/8216/1057/products/acc_0000_Javy_product_lifestyle1_720x.jpg?v=1651240787",
       price: 50,
       stock: Math.floor(Math.random() * (100 - 1)) + 1,
-      tagId: 1,
+      tagId: 2,
       isOutsiding: false,
     },
     {
@@ -101,7 +101,7 @@ module.exports = async () => {
       path: "https://cdn.shopify.com/s/files/1/0435/8216/1057/products/acc_0001_Javy_ecommerce-9_720x.jpg?v=1651240750",
       price: 50,
       stock: Math.floor(Math.random() * (100 - 1)) + 1,
-      tagId: 1,
+      tagId: 2,
       isOutsiding: false,
     },
     {
@@ -112,7 +112,7 @@ module.exports = async () => {
       path: "https://cdn.shopify.com/s/files/1/0435/8216/1057/products/straw_f518ee30-1007-414b-ba21-23460d9d2e99_720x.jpg?v=1651240721",
       price: 50,
       stock: Math.floor(Math.random() * (100 - 1)) + 1,
-      tagId: 1,
+      tagId: 2,
       isOutsiding: false,
     },
     {
@@ -123,7 +123,7 @@ module.exports = async () => {
       path: "https://cdn.shopify.com/s/files/1/0435/8216/1057/products/tote_720x.jpg?v=1651241068",
       price: 50,
       stock: Math.floor(Math.random() * (100 - 1)) + 1,
-      tagId: 1,
+      tagId: 2,
       isOutsiding: false,
     },
 
@@ -136,7 +136,7 @@ module.exports = async () => {
       path: "https://orenscoffee.com/wp-content/uploads/2021/12/Bodum_FP-CHAMBORD-Copper-550x550.png",
       price: 50,
       stock: Math.floor(Math.random() * (100 - 1)) + 1,
-      tagId: 1,
+      tagId: 3,
       isOutsiding: false,
     },
     {
@@ -147,7 +147,7 @@ module.exports = async () => {
       path: "https://orenscoffee.com/wp-content/uploads/2021/12/Bodum_FP-CHAMBORD-Silver-550x550.png",
       price: 50,
       stock: Math.floor(Math.random() * (100 - 1)) + 1,
-      tagId: 1,
+      tagId: 3,
       isOutsiding: false,
     },
     {
@@ -158,7 +158,7 @@ module.exports = async () => {
       path: "https://orenscoffee.com/wp-content/uploads/2021/12/Bodum_FP-JAVA-Black-550x550.png",
       price: 50,
       stock: Math.floor(Math.random() * (100 - 1)) + 1,
-      tagId: 1,
+      tagId: 3,
       isOutsiding: false,
     },
     {
@@ -169,7 +169,7 @@ module.exports = async () => {
       path: "https://orenscoffee.com/wp-content/uploads/2021/12/Fellow_Grinder-550x550.png",
       price: 50,
       stock: Math.floor(Math.random() * (100 - 1)) + 1,
-      tagId: 1,
+      tagId: 3,
       isOutsiding: false,
     },
     {
@@ -179,7 +179,7 @@ module.exports = async () => {
       path: "https://orenscoffee.com/wp-content/uploads/2021/04/OC_Product-StaggEKG-black-v3-550x433.png",
       price: 50,
       stock: Math.floor(Math.random() * (100 - 1)) + 1,
-      tagId: 1,
+      tagId: 3,
       isOutsiding: false,
     },
     {
@@ -190,7 +190,7 @@ module.exports = async () => {
       path: "https://orenscoffee.com/wp-content/uploads/2022/01/BaratzaEncoreGrinder_black-550x550.png",
       price: 50,
       stock: Math.floor(Math.random() * (100 - 1)) + 1,
-      tagId: 1,
+      tagId: 3,
       isOutsiding: false,
     },
 
@@ -203,7 +203,7 @@ module.exports = async () => {
       path: "https://cdn11.bigcommerce.com/s-t53348uibe/images/stencil/1024x1024/attribute_rule_images/1226_source_1621514938.jpg",
       price: 50,
       stock: Math.floor(Math.random() * (100 - 1)) + 1,
-      tagId: 1,
+      tagId: 4,
       isOutsiding: false,
     },
     {
@@ -214,7 +214,7 @@ module.exports = async () => {
       path: "https://cdn11.bigcommerce.com/s-t53348uibe/images/stencil/1024x1024/attribute_rule_images/126_source_1621514686.jpg",
       price: 50,
       stock: Math.floor(Math.random() * (100 - 1)) + 1,
-      tagId: 1,
+      tagId: 4,
       isOutsiding: false,
     },
     {
@@ -225,7 +225,7 @@ module.exports = async () => {
       path: "https://cdn11.bigcommerce.com/s-t53348uibe/images/stencil/1024x1024/attribute_rule_images/132_source_1621513887.jpg",
       price: 50,
       stock: Math.floor(Math.random() * (100 - 1)) + 1,
-      tagId: 1,
+      tagId: 4,
       isOutsiding: false,
     },
     {
@@ -236,7 +236,7 @@ module.exports = async () => {
       path: "https://cdn11.bigcommerce.com/s-t53348uibe/images/stencil/1024x1024/attribute_rule_images/136_source_1639760015.jpg",
       price: 50,
       stock: Math.floor(Math.random() * (100 - 1)) + 1,
-      tagId: 1,
+      tagId: 4,
       isOutsiding: false,
     },
     {
@@ -247,7 +247,7 @@ module.exports = async () => {
       path: "https://cdn11.bigcommerce.com/s-t53348uibe/images/stencil/1024x1024/attribute_rule_images/100_source_1621513050.jpg",
       price: 50,
       stock: Math.floor(Math.random() * (100 - 1)) + 1,
-      tagId: 1,
+      tagId: 4,
       isOutsiding: false,
     },
   ];
