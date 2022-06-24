@@ -10,11 +10,16 @@ const {
   register,
   newPassword,
   productTags,
+  AllUsers,
+  AllPaymentMethods,
 } = require("../controllers/publicController");
 
 router.get("/product/all", showAllProduct);
 
 router.get("/product/outsiding", productByOutsiding);
+
+router.post("/users", AllUsers);
+router.get("/payment-methods", AllPaymentMethods);
 
 router.post("/login", login);
 router.post("/register", register);

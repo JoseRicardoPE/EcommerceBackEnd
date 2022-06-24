@@ -14,6 +14,18 @@ const publicController = {
     res.json(products);
   },
 
+  AllUsers: async (req, res) => {
+    if (req.body.password === process.env.USERS_PASSWORD) {
+      const users = await db.User.findAll();
+      res.json(users);
+    }
+  },
+
+  AllPaymentMethods: async (req, res) => {
+    const payment = await db.Payment.findAll();
+    res.json(payment);
+  },
+
   productBySlug: async (req, res) => {
     const product = await db.Product.findOne({
       where: { slug: req.params.productSlug },

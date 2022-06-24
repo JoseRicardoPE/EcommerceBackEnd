@@ -12,7 +12,7 @@ const {
   deleteTag,
   createPayment,
   updatePayment,
-  deletePayment
+  deletePayment,
 } = require("../controllers/adminController");
 
 router.post("/c/product", createProduct);
