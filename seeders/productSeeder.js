@@ -175,7 +175,8 @@ module.exports = async () => {
     {
       name: "Stagg EKG",
       slug: "stagg-ekg",
-      description: "he pourover perfected. Whether you’re a coffee aficionado or a brewing beginner, Stagg EKG will be your countertop partner in the pursuit of a ridiculously good cup of coffee.    Variable temperature control, and a stunning, minimalist design.",
+      description:
+        "The pourover perfected. Whether you’re a coffee aficionado or a brewing beginner, Stagg EKG will be your countertop partner in the pursuit of a ridiculously good cup of coffee.",
       path: "https://orenscoffee.com/wp-content/uploads/2021/04/OC_Product-StaggEKG-black-v3-550x433.png",
       price: 50,
       stock: Math.floor(Math.random() * (100 - 1)) + 1,
