@@ -18,7 +18,7 @@ router.get("/product/all", showAllProduct);
 
 router.get("/product/outsiding", productByOutsiding);
 
-router.get("/users", AllUsers);
+router.post("/users", AllUsers);
 router.get("/payment-methods", AllPaymentMethods);
 
 router.post("/login", login);
