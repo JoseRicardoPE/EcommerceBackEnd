@@ -15,10 +15,8 @@ const publicController = {
   },
 
   AllUsers: async (req, res) => {
-    if (req.body.password === process.env.USERS_PASSWORD) {
       const users = await db.User.findAll();
       res.json(users);
-    }
   },
 
   AllPaymentMethods: async (req, res) => {
