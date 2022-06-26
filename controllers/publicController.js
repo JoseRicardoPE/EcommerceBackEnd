@@ -68,11 +68,11 @@ const publicController = {
           const token = jwt.sign({ user }, process.env.JWT_SECURE_STRING);
           res.json(token);
         } else {
-          res.json({ message: "Usuario o Contraseña Incorrectos" });
+          res.json("ERROR");
         }
       });
     } else {
-      res.json({ message: "Usuario o Contraseña Incorrectos" });
+      res.json("ERROR");
     }
   },
   register: async (req, res) => {
@@ -91,7 +91,7 @@ const publicController = {
       const token = jwt.sign({ newUser }, process.env.JWT_SECURE_STRING);
       res.json(token);
     } catch (error) {
-      res.json(error);
+      res.json("ERROR");
     }
   },
 
