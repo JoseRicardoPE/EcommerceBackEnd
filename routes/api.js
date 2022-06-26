@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const initial_setup = require("../initial_setup")
+const initial_setup = require("../initial_setup");
 const {
   showAllProduct,
   productBySlug,
@@ -13,11 +13,15 @@ const {
   productTags,
   AllUsers,
   AllPaymentMethods,
+  decodeJson,
 } = require("../controllers/publicController");
+var jwt = require("jsonwebtoken");
+
+router.post("/decode", decodeJson);
 
 router.get("/seed/all", (req, res) => {
-  initial_setup()
-  res.json("Seeder Exitoso")
+  initial_setup();
+  res.json("Seeder Exitoso");
 });
 
 router.get("/product/all", showAllProduct);

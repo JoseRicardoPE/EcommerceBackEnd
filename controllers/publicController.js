@@ -9,6 +9,12 @@ const publicController = {
     res.json("Public Test");
   },
 
+  decodeJson: (req, res) => {
+    token = req.body.token;
+    const decoded = jwt.decode(token, { complete: true });
+    res.json(decoded.payload);
+  },
+
   showAllProduct: async (req, res) => {
     const products = await db.Product.findAll();
     res.json(products);
@@ -35,7 +41,6 @@ const publicController = {
 
   productTags: async (req, res) => {
     const productTags = await db.Tag.findAll();
-    console.log(productTags);
     res.json(productTags);
   },
 
