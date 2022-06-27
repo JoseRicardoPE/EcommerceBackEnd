@@ -14,10 +14,13 @@ const {
   AllUsers,
   AllPaymentMethods,
   decodeJson,
+  updateUser
 } = require("../controllers/publicController");
 var jwt = require("jsonwebtoken");
 
 router.post("/decode", decodeJson);
+
+router.post("/update/user/:userId", updateUser)
 
 router.get("/seed/all", (req, res) => {
   initial_setup();

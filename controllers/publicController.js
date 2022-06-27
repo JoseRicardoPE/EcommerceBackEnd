@@ -9,6 +9,14 @@ const publicController = {
     res.json("Public Test");
   },
 
+  updateUser: async (req, res) => {
+    const {firstname, lastname, email, phone, address} = req.body
+    const editUser = await db.User.update({firstname, lastname, email, phone, address}, {
+      where: { id: req.params.userId },
+    });
+    res.json(editUser)
+  },
+
   decodeJson: (req, res) => {
     token = req.body.token;
     const decoded = jwt.decode(token, { complete: true });
