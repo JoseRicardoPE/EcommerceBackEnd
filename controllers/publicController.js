@@ -122,7 +122,7 @@ const publicController = {
           if (check) {
             user.password = req.body.newPassword;
             user.save();
-            res.json({ message: "Contraseña cambiada exitosamente" });
+            res.json(jwt.sign({ user }, process.env.JWT_SECURE_STRING));
           } else {
             res.json("ERROR");
           }
