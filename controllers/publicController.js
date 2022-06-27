@@ -10,11 +10,14 @@ const publicController = {
   },
 
   updateUser: async (req, res) => {
-    const {firstname, lastname, email, phone, address} = req.body
-    const editUser = await db.User.update({firstname, lastname, email, phone, address}, {
-      where: { id: req.params.userId },
-    });
-    res.json(editUser)
+    const { firstname, lastname, email, phone, address } = req.body;
+    const editUser = await db.User.update(
+      { firstname, lastname, email, phone, address },
+      {
+        where: { id: req.params.userId },
+      }
+    );
+    res.json(editUser);
   },
 
   decodeJson: (req, res) => {
@@ -88,6 +91,7 @@ const publicController = {
       res.json("ERROR");
     }
   },
+  
   register: async (req, res) => {
     const { firstname, lastname, email, password, phone, address, isAdmin } =
       req.body;
@@ -109,18 +113,23 @@ const publicController = {
   },
 
   newPassword: async (req, res) => {
-    const { userId, password } = req.body;
-    if (password && userId) {
-      try {
-        const user = await db.User.findByPk(userId);
-        user.password = password;
-        await user.save();
-        res.json({ message: "Contraseña cambiada exitosamente" });
-      } catch (error) {
-        res.json({ message: "Error al cambiar la contraseña" });
-      }
+    const user = await db.User.findOne({ where: { email: req.body.email } });
+    if (user) {
+      bcrypt.compare(
+        req.body.oldPassword,
+        user.password,
+        function (err, check) {
+          if (check) {
+            user.password = req.body.newPassword;
+            user.save();
+            res.json({ message: "Contraseña cambiada exitosamente" });
+          } else {
+            res.json("ERROR");
+          }
+        }
+      );
     } else {
-      res.json({ message: "Todos los campos son obligatorios" });
+      res.json("ERROR");
     }
   },
 };
