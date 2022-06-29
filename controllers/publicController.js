@@ -93,12 +93,13 @@ const publicController = {
   },
   
   register: async (req, res) => {
-    const { firstname, lastname, email, password, phone, address, isAdmin } =
+    const { firstname, lastname, img, email, password, phone, address, isAdmin } =
       req.body;
     try {
       const user = await db.User.create({
         firstname,
         lastname,
+        img,
         email,
         password,
         phone,
