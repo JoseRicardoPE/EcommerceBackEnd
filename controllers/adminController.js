@@ -3,8 +3,13 @@ var jwt = require("jsonwebtoken");
 
 const publicController = {
   createProduct: async (req, res) => {
-    const { name, slug, description, path, price, stock, isOutsiding, tagId } =
-      req.body;
+    const name = req.body[0],
+      slug = req.body[1],
+      description = req.body[2],
+      path = req.body[3],
+      price = req.body[4],
+      stock = req.body[5],
+      isOutsiding = req.body[6];
     try {
       const newProduct = await db.Product.create({
         name,
@@ -14,7 +19,6 @@ const publicController = {
         price,
         stock,
         isOutsiding,
-        tagId,
       });
       res.json(newProduct);
     } catch (error) {
@@ -25,16 +29,14 @@ const publicController = {
   updateProduct: async (req, res) => {
     const product = await db.Product.findByPk(req.params.id);
     if (product) {
-      const {
-        name,
-        slug,
-        description,
-        path,
-        price,
-        stock,
-        isOutsiding,
-        tagId,
-      } = req.body;
+      const name = req.body[0],
+        slug = req.body[1],
+        description = req.body[2],
+        path = req.body[3],
+        price = req.body[4],
+        stock = req.body[5],
+        isOutsiding = req.body[6];
+
       product.name = name;
       product.slug = slug;
       product.description = description;
@@ -42,7 +44,7 @@ const publicController = {
       product.price = price;
       product.stock = stock;
       product.isOutsiding = isOutsiding;
-      product.tagId = tagId;
+      product.tagId;
       try {
         await product.save();
         res.json({ message: "Producto editado exitosamente" });
@@ -97,7 +99,7 @@ const publicController = {
   createPayment: async (req, res) => {
     try {
       await db.Payment.create({
-        name: req.body.name,
+        name: req.body[0],
       });
       res.json("Se ha creado su método de pago exitosamente!");
     } catch (error) {
@@ -116,7 +118,7 @@ const publicController = {
   },
 
   updatePayment: async (req, res) => {
-    const updatedMethod = { name: req.body.name };
+    const updatedMethod = { name: req.body[0] };
     try {
       await db.Payment.update(updatedMethod, { where: { id: req.params.id } });
       res.json("se ha cambiado su método de pago");
@@ -126,18 +128,21 @@ const publicController = {
   },
 
   createTag: async (req, res) => {
-    const { name } = req.body;
-    if (name) {
+    console.log(req.body);
+    const name = req.body[0];
+    const path = req.body[1];
+    if (name && path) {
       try {
         const newTag = await db.Tag.create({
           name,
+          path,
         });
         res.json({ message: "Tag creada con exito" });
       } catch (error) {
         res.json(error);
       }
     } else {
-      res.json({ message: "Se requiere un nombre" });
+      res.json({ message: "Se requiere un nombre y un path" });
     }
   },
 
@@ -145,7 +150,8 @@ const publicController = {
     try {
       const editTag = await db.Tag.update(
         {
-          name: req.body.name,
+          name: req.body[0],
+          path: req.body[1],
         },
         {
           where: { id: req.params.id },
