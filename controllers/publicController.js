@@ -96,7 +96,7 @@ const publicController = {
     const { firstname, lastname, email, password, phone, address, isAdmin } =
       req.body;
     try {
-      const newUser = await db.User.create({
+      const user = await db.User.create({
         firstname,
         lastname,
         email,
@@ -105,7 +105,7 @@ const publicController = {
         address,
         isAdmin,
       });
-      const token = jwt.sign({ newUser }, process.env.JWT_SECURE_STRING);
+      const token = jwt.sign({ user }, process.env.JWT_SECURE_STRING);
       res.json(token);
     } catch (error) {
       res.json("ERROR");
