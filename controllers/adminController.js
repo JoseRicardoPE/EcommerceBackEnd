@@ -1,4 +1,6 @@
 const db = require("../models");
+var jwt = require("jsonwebtoken");
+
 const publicController = {
   createProduct: async (req, res) => {
     const { name, slug, description, path, price, stock, isOutsiding, tagId } =
@@ -23,8 +25,16 @@ const publicController = {
   updateProduct: async (req, res) => {
     const product = await db.Product.findByPk(req.params.id);
     if (product) {
-      const { name, slug, description, path, price, stock, isOutsiding, tagId } =
-        req.body;
+      const {
+        name,
+        slug,
+        description,
+        path,
+        price,
+        stock,
+        isOutsiding,
+        tagId,
+      } = req.body;
       product.name = name;
       product.slug = slug;
       product.description = description;
@@ -162,6 +172,58 @@ const publicController = {
         res.json({ message: "Tag eliminado cone exito" });
       } else {
         res.json({ message: "Error, no existe este tag" });
+      }
+    } catch (error) {
+      res.json(error);
+    }
+  },
+
+  updateUser: async (req, res) => {
+    if (req.body.token) {
+      const decoded = jwt.decode(req.body.token, { complete: true });
+      const { firstname, lastname, img, email, password, phone, address } =
+        req.body;
+
+      try {
+        const editUser = await db.User.update(
+          {
+            firstname,
+            lastname,
+            img,
+            email,
+            password,
+            phone,
+            address,
+            isAdmin: 0,
+          },
+          {
+            where: { id: decoded.payload.user.id },
+          }
+        );
+        if (editUser) {
+          const user = await db.User.findByPk(decoded.payload.user.id);
+          const newToken = jwt.sign({ user }, process.env.JWT_SECURE_STRING);
+          res.json(newToken);
+        } else {
+          res.json({ message: "Error, rellene todos los campos" });
+        }
+      } catch (error) {
+        res.json(error);
+      }
+    }
+  },
+
+  deleteUser: async (req, res) => {
+    try {
+      const deleteUser = await db.User.destroy({
+        where: {
+          id: req.params.id,
+        },
+      });
+      if (deleteUser) {
+        res.json({ message: "Usuario eliminado cone exito" });
+      } else {
+        res.json({ message: "Error, no se puede eliminar el usuario" });
       }
     } catch (error) {
       res.json(error);

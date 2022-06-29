@@ -13,11 +13,16 @@ const {
   createPayment,
   updatePayment,
   deletePayment,
+  updateUser,
+  deleteUser,
 } = require("../controllers/adminController");
 
 router.post("/c/product", createProduct);
 router.post("/u/product/:id", updateProduct);
 router.get("/d/product/:id", deleteProduct);
+
+router.post("/u/user", updateUser);
+router.get("/d/user/:id", deleteUser);
 
 router.post("/c/image", createImage);
 router.post("/u/image/:id", updateImage);
