@@ -142,6 +142,14 @@ const publicController = {
     }
   },
 
+  showOrder: async (req, res) => {
+    console.log("entro");
+    const order = await db.Order.findOne({
+      where: { id: req.params.id },
+    });
+    res.json(order);
+  },
+
   orderCreate: async (req, res) => {
     const {
       cantidad,
