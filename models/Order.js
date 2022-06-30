@@ -20,6 +20,18 @@ module.exports = function (sequelize, Model, DataTypes) {
       state: {
         type: DataTypes.INTEGER,
       },
+      firstname: {
+        type: DataTypes.STRING(200),
+        allowNull: false,
+      },
+      lastname: {
+        type: DataTypes.STRING(200),
+        allowNull: false,
+      },
+      address: {
+        type: DataTypes.STRING(200),
+        allowNull: false,
+      },
     },
     {
       sequelize,
