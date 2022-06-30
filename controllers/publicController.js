@@ -143,9 +143,10 @@ const publicController = {
   },
 
   orderCreate: async (req, res) => {
-    const { products, total, state, userId, paymentId } = req.body;
+    const { cantidad, products, total, state, userId, paymentId } = req.body;
     try {
       const newOrder = await db.Order.create({
+        cantidad,
         products,
         total,
         state,
@@ -159,10 +160,11 @@ const publicController = {
   },
 
   orderUpdate: async (req, res) => {
-    const { products, total, state } = req.body;
+    const { cantidad, products, total, state } = req.body;
     try {
       const editOrder = await db.Order.update(
         {
+          cantidad,
           products,
           total,
           state,
