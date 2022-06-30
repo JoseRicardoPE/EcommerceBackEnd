@@ -14,13 +14,15 @@ const {
   AllUsers,
   AllPaymentMethods,
   decodeJson,
-  updateUser
+  updateUser,
+  orderCreate,
+  orderUpdate,
 } = require("../controllers/publicController");
 var jwt = require("jsonwebtoken");
 
 router.post("/decode", decodeJson);
 
-router.post("/update/user/:userId", updateUser)
+router.post("/update/user/:userId", updateUser);
 
 router.get("/seed/all", (req, res) => {
   initial_setup();
@@ -44,5 +46,8 @@ router.get("/tag", productTags);
 router.get("/product/tag/:tagId", productByTagId);
 
 router.get("/images/:productId", imagesByProductId);
+
+router.post("/order/c", orderCreate);
+router.post("/order/u/:id", orderUpdate);
 
 module.exports = router;

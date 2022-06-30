@@ -91,10 +91,18 @@ const publicController = {
       res.json("ERROR");
     }
   },
-  
+
   register: async (req, res) => {
-    const { firstname, lastname, img, email, password, phone, address, isAdmin } =
-      req.body;
+    const {
+      firstname,
+      lastname,
+      img,
+      email,
+      password,
+      phone,
+      address,
+      isAdmin,
+    } = req.body;
     try {
       const user = await db.User.create({
         firstname,
@@ -131,6 +139,45 @@ const publicController = {
       );
     } else {
       res.json("ERROR");
+    }
+  },
+
+  orderCreate: async (req, res) => {
+    const { products, total, state, userId, paymentId } = req.body;
+    try {
+      const newOrder = await db.Order.create({
+        products,
+        total,
+        state,
+        userId,
+        paymentId,
+      });
+      res.json(newOrder);
+    } catch (error) {
+      res.json({ message: "Error al crear la orden" });
+    }
+  },
+
+  orderUpdate: async (req, res) => {
+    const { products, total, state } = req.body;
+    try {
+      const editOrder = await db.Order.update(
+        {
+          products,
+          total,
+          state,
+        },
+        {
+          where: { id: req.params.id },
+        }
+      );
+      if (editOrder) {
+        res.json({ message: "Order editada con exito" });
+      } else {
+        res.json({ message: "Error, no existe este order" });
+      }
+    } catch (error) {
+      res.json(error);
     }
   },
 };
