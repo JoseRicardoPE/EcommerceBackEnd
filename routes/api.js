@@ -15,6 +15,7 @@ const {
   AllPaymentMethods,
   decodeJson,
   updateUser,
+  showAllOrders,
   showOrder,
   orderCreate,
   orderUpdate,
@@ -48,6 +49,7 @@ router.get("/product/tag/:tagId", productByTagId);
 
 router.get("/images/:productId", imagesByProductId);
 
+router.get("/order/show", showAllOrders);
 router.get("/order/show/:id", showOrder);
 router.post("/order/c", orderCreate);
 router.post("/order/u/:id", orderUpdate);
