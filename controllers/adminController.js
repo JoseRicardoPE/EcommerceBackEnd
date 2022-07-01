@@ -3,10 +3,10 @@ var jwt = require("jsonwebtoken");
 
 const publicController = {
   createProduct: async (req, res) => {
-    const name = req.body[0],
-      slug = req.body[1],
-      description = req.body[2],
-      path = req.body[3],
+    const path = req.body[0],
+      name = req.body[1],
+      slug = req.body[2],
+      description = req.body[3],
       price = req.body[4],
       stock = req.body[5],
       isOutsiding = req.body[6];
@@ -29,10 +29,10 @@ const publicController = {
   updateProduct: async (req, res) => {
     const product = await db.Product.findByPk(req.params.id);
     if (product) {
-      const name = req.body[0],
-        slug = req.body[1],
-        description = req.body[2],
-        path = req.body[3],
+      const path = req.body[0],
+        name = req.body[1],
+        slug = req.body[2],
+        description = req.body[3],
         price = req.body[4],
         stock = req.body[5],
         isOutsiding = req.body[6];
@@ -129,8 +129,8 @@ const publicController = {
 
   createTag: async (req, res) => {
     console.log(req.body);
-    const name = req.body[0];
-    const path = req.body[1];
+    const name = req.body[1];
+    const path = req.body[0];
     if (name && path) {
       try {
         const newTag = await db.Tag.create({
@@ -150,8 +150,8 @@ const publicController = {
     try {
       const editTag = await db.Tag.update(
         {
-          name: req.body[0],
-          path: req.body[1],
+          name: req.body[1],
+          path: req.body[0],
         },
         {
           where: { id: req.params.id },
