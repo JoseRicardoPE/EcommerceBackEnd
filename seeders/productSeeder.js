@@ -45,7 +45,7 @@ module.exports = async () => {
       price: 50,
       stock: Math.floor(Math.random() * (100 - 1)) + 1,
       tagId: 1,
-      isOutsiding: false,
+      isOutsiding: true,
     },
     {
       name: "Decaf Coffee Concentrate",
