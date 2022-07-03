@@ -5,7 +5,6 @@ const {
   showAllProduct,
   productBySlug,
   productByTagId,
-  imagesByProductId,
   productByOutsiding,
   login,
   register,
@@ -46,8 +45,6 @@ router.get("/product/:productSlug", productBySlug);
 
 router.get("/tag", productTags);
 router.get("/product/tag/:tagId", productByTagId);
-
-router.get("/images/:productId", imagesByProductId);
 
 router.get("/order/show", showAllOrders);
 router.get("/order/show/:id", showOrder);
