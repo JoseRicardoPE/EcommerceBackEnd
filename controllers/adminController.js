@@ -200,7 +200,7 @@ const publicController = {
             password,
             phone,
             address,
-            isAdmin: 0,
+            isAdmin: decoded.payload.user.isAdmin,
           },
           {
             where: { id: decoded.payload.user.id },
