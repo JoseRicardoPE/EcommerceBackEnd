@@ -25,10 +25,12 @@ router.post("/decode", decodeJson);
 
 router.post("/update/user/:userId", updateUser);
 
-router.get("/seed/all", (req, res) => {
-  initial_setup();
-  console.log("Corriendo Seeder")
-  res.json({message:"Seeder Exitoso"});
+router.get("/seed/all", async (req, res) => {
+  await require("../seeders/tagSeeder")();
+  await require("../seeders/productSeeder")();
+  await require("../seeders/imageSeeder")();
+  await require("../seeders/userSeeder")();
+  await require("../seeders/paymentSeeder")();ƒ
 });
 
 router.get("/product/all", showAllProduct);
