@@ -33,6 +33,7 @@ router.get("/seed/all", async (req, res) => {
   await require("../seeders/imageSeeder")();
   await require("../seeders/userSeeder")();
   await require("../seeders/paymentSeeder")();
+  res.send("Base borrada")
 });
 
 router.get("/product/all", showAllProduct);
