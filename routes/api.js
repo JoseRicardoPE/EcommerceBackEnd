@@ -1,4 +1,5 @@
 const express = require("express");
+const db = require("./models");
 const router = express.Router();
 
 const {
@@ -26,11 +27,12 @@ router.post("/decode", decodeJson);
 router.post("/update/user/:userId", updateUser);
 
 router.get("/seed/all", async (req, res) => {
+  await db.sequelize.sync({ force: true });
   await require("../seeders/tagSeeder")();
   await require("../seeders/productSeeder")();
   await require("../seeders/imageSeeder")();
   await require("../seeders/userSeeder")();
-  await require("../seeders/paymentSeeder")();ƒ
+  await require("../seeders/paymentSeeder")();
 });
 
 router.get("/product/all", showAllProduct);
