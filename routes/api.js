@@ -25,9 +25,10 @@ router.post("/decode", decodeJson);
 
 router.post("/update/user/:userId", updateUser);
 
-router.get("/seed/all", async (req, res) => {
-  await initial_setup();
-  res.json("Seeder Exitoso");
+router.get("/seed/all", (req, res) => {
+  // initial_setup();
+  console.log("Corriendo Seeder")
+  res.json({message:"Seeder Exitoso"});
 });
 
 router.get("/product/all", showAllProduct);
