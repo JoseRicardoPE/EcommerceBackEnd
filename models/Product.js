@@ -14,7 +14,7 @@ module.exports = function (sequelize, Model, DataTypes) {
       slug: {
         type: DataTypes.STRING(200),
         allowNull: false,
-        unique: true
+        // unique: true
       },
       description: {
         type: DataTypes.TEXT,
