@@ -42,9 +42,9 @@ router.post("/u/payment/:id", updatePayment);
 router.get("/d/payment/:id", deletePayment);
 
 router.get("/order/show", showAllOrders);
-router.post("/order/c", orderCreate);
+router.post("/c/order", orderCreate);
 router.get("/order/show/:id", showOrder);
-router.post("/order/u/:id", orderUpdate);
-router.post("/order/d/:id", orderDelete);
+router.post("/u/order/:id", orderUpdate);
+router.post("/d/order/:id", orderDelete);
 
 module.exports = router;
