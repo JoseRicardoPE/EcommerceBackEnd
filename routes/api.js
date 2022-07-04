@@ -15,10 +15,6 @@ const {
   AllPaymentMethods,
   decodeJson,
   updateUser,
-  showAllOrders,
-  showOrder,
-  orderCreate,
-  orderUpdate,
 } = require("../controllers/publicController");
 var jwt = require("jsonwebtoken");
 
@@ -43,10 +39,5 @@ router.get("/product/:productSlug", productBySlug);
 
 router.get("/tag", productTags);
 router.get("/product/tag/:tagId", productByTagId);
-
-router.get("/order/show", showAllOrders);
-router.get("/order/show/:id", showOrder);
-router.post("/order/c", orderCreate);
-router.post("/order/u/:id", orderUpdate);
 
 module.exports = router;

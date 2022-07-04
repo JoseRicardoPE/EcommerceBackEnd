@@ -12,7 +12,7 @@ const publicController = {
     await require("../seeders/imageSeeder")();
     await require("../seeders/userSeeder")();
     await require("../seeders/paymentSeeder")();
-    res.send("Base borrada")
+    res.send("Base borrada");
   },
 
   updateUser: async (req, res) => {
@@ -52,7 +52,7 @@ const publicController = {
   productBySlug: async (req, res) => {
     const product = await db.Product.findOne({
       where: { slug: req.params.productSlug },
-      include: db.ProductImages
+      include: db.ProductImages,
     });
     res.json(product);
   },

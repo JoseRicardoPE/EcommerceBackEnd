@@ -235,6 +235,91 @@ const publicController = {
       res.json(error);
     }
   },
+
+  showAllOrders: async (req, res) => {
+    const orders = await db.Order.findAll();
+    res.json(orders);
+  },
+  showOrder: async (req, res) => {
+    const order = await db.Order.findOne({
+      where: { id: req.params.id },
+    });
+    res.json(order);
+  },
+
+  orderCreate: async (req, res) => {
+    const {
+      cantidad,
+      products,
+      total,
+      firstname,
+      lastname,
+      address,
+      state,
+      userId,
+      paymentId,
+    } = req.body;
+    try {
+      const newOrder = await db.Order.create({
+        cantidad,
+        products,
+        total,
+        firstname,
+        lastname,
+        address,
+        state,
+        userId,
+        paymentId,
+      });
+      res.json(newOrder);
+    } catch (error) {
+      res.json({ message: "Error al crear la orden" });
+    }
+  },
+
+  orderUpdate: async (req, res) => {
+    const { cantidad, products, total, firstname, lastname, address, state } =
+      req.body;
+    try {
+      const editOrder = await db.Order.update(
+        {
+          cantidad,
+          products,
+          total,
+          firstname,
+          lastname,
+          address,
+          state,
+        },
+        {
+          where: { id: req.params.id },
+        }
+      );
+      if (editOrder) {
+        res.json({ message: "Order editada con exito" });
+      } else {
+        res.json({ message: "Error, no existe este order" });
+      }
+    } catch (error) {
+      res.json(error);
+    }
+  },
+  orderDelete: async (req, res) => {
+    try {
+      const deleteOrder = await db.Order.destroy({
+        where: {
+          id: req.params.id,
+        },
+      });
+      if (deleteOrder) {
+        res.json({ message: "Orden eliminado cone exito" });
+      } else {
+        res.json({ message: "Error, no se puede eliminar la orden" });
+      }
+    } catch (error) {
+      res.json(error);
+    }
+  },
 };
 
 module.exports = publicController;

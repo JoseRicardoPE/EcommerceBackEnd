@@ -15,6 +15,11 @@ const {
   deletePayment,
   updateUser,
   deleteUser,
+  showAllOrders,
+  showOrder,
+  orderCreate,
+  orderUpdate,
+  orderDelete,
 } = require("../controllers/adminController");
 
 router.post("/c/product", createProduct);
@@ -35,5 +40,11 @@ router.get("/d/tag/:id", deleteTag);
 router.post("/c/payment", createPayment);
 router.post("/u/payment/:id", updatePayment);
 router.get("/d/payment/:id", deletePayment);
+
+router.get("/order/show", showAllOrders);
+router.post("/order/c", orderCreate);
+router.get("/order/show/:id", showOrder);
+router.post("/order/u/:id", orderUpdate);
+router.post("/order/d/:id", orderDelete);
 
 module.exports = router;
