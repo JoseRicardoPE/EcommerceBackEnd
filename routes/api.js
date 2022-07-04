@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const initial_setup = require("../initial_setup");
+
 const {
   showAllProduct,
   productBySlug,
