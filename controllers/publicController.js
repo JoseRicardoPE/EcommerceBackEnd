@@ -5,8 +5,14 @@ const bcrypt = require("bcryptjs");
 var jwt = require("jsonwebtoken");
 
 const publicController = {
-  test: (req, res) => {
-    res.json("Public Test");
+  seedAll: async (req, res) => {
+    await db.sequelize.sync({ force: true });
+    await require("../seeders/tagSeeder")();
+    await require("../seeders/productSeeder")();
+    await require("../seeders/imageSeeder")();
+    await require("../seeders/userSeeder")();
+    await require("../seeders/paymentSeeder")();
+    res.send("Base borrada")
   },
 
   updateUser: async (req, res) => {
