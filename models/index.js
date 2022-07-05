@@ -10,6 +10,12 @@ const sequelize = new Sequelize(
     dialect: process.env.DB_DIALECT,
     dialectModule: require("pg"),
     logging: false,
+    dialectOptions: {
+      useUTC: false, //for reading from database
+      dateStrings: true,
+      typeCast: true,
+    },
+    timezone: "+05:30", //for writing to database
   }
 );
 
@@ -22,8 +28,8 @@ const Product = require("./Product")(sequelize, Model, DataTypes);
 const ProductImages = require("./ProductImages")(sequelize, Model, DataTypes);
 const Tag = require("./Tag")(sequelize, Model, DataTypes);
 
-User.hasMany(Order)
-Order.belongsTo(User)
+User.hasMany(Order);
+Order.belongsTo(User);
 
 User.hasMany(Address);
 Address.belongsTo(User);
