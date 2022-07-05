@@ -15,9 +15,12 @@ const {
   AllPaymentMethods,
   decodeJson,
   updateUser,
-  getTag
+  getTag,
+  getOrdersFromUser
 } = require("../controllers/publicController");
 var jwt = require("jsonwebtoken");
+
+router.get("/orders/from/:userId", getOrdersFromUser)
 
 router.get("/tag/:id", getTag)
 

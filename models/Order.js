@@ -11,7 +11,7 @@ module.exports = function (sequelize, Model, DataTypes) {
         type: DataTypes.INTEGER,
       },
       products: {
-        type: DataTypes.TEXT,
+        type: DataTypes.JSON,
         allowNull: false,
       },
       total: {

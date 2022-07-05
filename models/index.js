@@ -22,6 +22,9 @@ const Product = require("./Product")(sequelize, Model, DataTypes);
 const ProductImages = require("./ProductImages")(sequelize, Model, DataTypes);
 const Tag = require("./Tag")(sequelize, Model, DataTypes);
 
+User.hasMany(Order)
+Order.belongsTo(User)
+
 User.hasMany(Address);
 Address.belongsTo(User);
 

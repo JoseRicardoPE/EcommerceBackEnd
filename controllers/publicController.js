@@ -22,6 +22,14 @@ const publicController = {
     res.send("Base borrada");
   },
 
+  getOrdersFromUser: async (req, res) => {
+    const orders = await db.Order.findAll({
+      where: { userId: req.params.userId },
+      order: [["createdAt", "DESC"]]
+    });
+    res.json(orders)
+  },
+
   updateUser: async (req, res) => {
     const { firstname, lastname, email, phone, address } = req.body;
     const editUser = await db.User.update(
