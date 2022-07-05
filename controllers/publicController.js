@@ -7,10 +7,10 @@ var jwt = require("jsonwebtoken");
 const publicController = {
   getTag: async (req, res) => {
     const tag = await db.Tag.findOne({
-      where: {id: req.params.id},
-      incude: db.Product
-    })
-    res.json(tag)
+      where: { id: req.params.id },
+      incude: db.Product,
+    });
+    res.json(tag);
   },
   seedAll: async (req, res) => {
     await db.sequelize.sync({ force: true });
@@ -52,7 +52,9 @@ const publicController = {
   },
 
   AllPaymentMethods: async (req, res) => {
-    const payment = await db.Payment.findAll();
+    const payment = await db.Payment.findAll({
+      order: [["createdAt", "DESC"]],
+    });
     res.json(payment);
   },
 
