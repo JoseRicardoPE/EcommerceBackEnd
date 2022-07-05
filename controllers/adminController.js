@@ -277,6 +277,7 @@ const publicController = {
         state,
         userId,
         paymentId,
+        creationDate: Date.now(),
       });
       res.json(newOrder);
     } catch (error) {
