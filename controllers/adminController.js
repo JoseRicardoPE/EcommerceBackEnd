@@ -131,11 +131,13 @@ const publicController = {
     console.log(req.body);
     const name = req.body[1];
     const path = req.body[0];
-    if (name && path) {
+    const description = req.body[2];
+    if (name && path && description) {
       try {
         const newTag = await db.Tag.create({
           name,
           path,
+          description
         });
         res.json({ message: "Tag creada con exito" });
       } catch (error) {
@@ -152,6 +154,8 @@ const publicController = {
         {
           name: req.body[1],
           path: req.body[0],
+          description: req.body[2]
+          
         },
         {
           where: { id: req.params.id },
