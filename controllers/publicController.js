@@ -8,7 +8,7 @@ const publicController = {
   getTag: async (req, res) => {
     const tag = await db.Tag.findOne({
       where: { id: req.params.id },
-      incude: db.Product,
+      include: db.Product,
     });
     res.json(tag);
   },
