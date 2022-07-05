@@ -40,13 +40,17 @@ const publicController = {
   },
 
   showAllProduct: async (req, res) => {
-    const products = await db.Product.findAll();
+    const products = await db.Product.findAll({
+      order: [["createdAt", "DESC"]],
+    });
     res.json(products);
   },
 
   AllUsers: async (req, res) => {
     if (req.body.password === process.env.USERS_PASSWORD) {
-      const users = await db.User.findAll();
+      const users = await db.User.findAll({
+        order: [["createdAt", "DESC"]],
+      });
       res.json(users);
     }
   },
@@ -67,7 +71,9 @@ const publicController = {
   },
 
   productTags: async (req, res) => {
-    const productTags = await db.Tag.findAll();
+    const productTags = await db.Tag.findAll({
+      order: [["createdAt", "DESC"]],
+    });
     res.json(productTags);
   },
 
@@ -151,7 +157,9 @@ const publicController = {
     }
   },
   showAllOrders: async (req, res) => {
-    const orders = await db.Order.findAll();
+    const orders = await db.Order.findAll({
+      order: [["createdAt", "DESC"]],
+    });
     res.json(orders);
   },
   showOrder: async (req, res) => {
