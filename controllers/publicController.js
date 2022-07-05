@@ -65,7 +65,7 @@ const publicController = {
   productBySlug: async (req, res) => {
     const product = await db.Product.findOne({
       where: { slug: req.params.productSlug },
-      include: db.ProductImages,
+      include: [db.ProductImages, db.Tag],
     });
     res.json(product);
   },
