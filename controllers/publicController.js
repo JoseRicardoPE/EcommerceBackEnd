@@ -5,6 +5,13 @@ const bcrypt = require("bcryptjs");
 var jwt = require("jsonwebtoken");
 
 const publicController = {
+  getTag: async (req, res) => {
+    const tag = await db.Tag.findAll({
+      where: {id: req.params.id},
+      incude: db.Product
+    })
+    res.json(tag)
+  },
   seedAll: async (req, res) => {
     await db.sequelize.sync({ force: true });
     await require("../seeders/tagSeeder")();
