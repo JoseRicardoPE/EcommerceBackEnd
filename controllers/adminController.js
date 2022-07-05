@@ -133,8 +133,8 @@ const publicController = {
 
   createTag: async (req, res) => {
     console.log(req.body);
-    const name = req.body[1];
     const path = req.body[0];
+    const name = req.body[1];
     const description = req.body[2];
     if (name && path && description) {
       try {
@@ -156,8 +156,8 @@ const publicController = {
     try {
       const editTag = await db.Tag.update(
         {
-          name: req.body[1],
           path: req.body[0],
+          name: req.body[1],
           description: req.body[2],
         },
         {
