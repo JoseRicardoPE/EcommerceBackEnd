@@ -6,7 +6,7 @@ var jwt = require("jsonwebtoken");
 
 const publicController = {
   getTag: async (req, res) => {
-    const tag = await db.Tag.findAll({
+    const tag = await db.Tag.findOne({
       where: {id: req.params.id},
       incude: db.Product
     })
