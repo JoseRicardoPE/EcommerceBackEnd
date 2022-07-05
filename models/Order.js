@@ -32,8 +32,17 @@ module.exports = function (sequelize, Model, DataTypes) {
         type: DataTypes.STRING(200),
         allowNull: false,
       },
+      creationDate: {
+        type: DataTypes.DATE(),
+        allowNull: false,
+      },
     },
     {
+      hooks: {
+        beforeCreate: async (order, options) => {
+          order.creationDate = Date.now()
+        },
+      },
       sequelize,
       modelName: "Order",
     }
