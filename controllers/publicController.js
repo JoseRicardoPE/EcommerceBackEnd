@@ -8,7 +8,7 @@ const publicController = {
   getTag: async (req, res) => {
     const tag = await db.Tag.findOne({
       where: { id: req.params.id },
-      incude: db.Product,
+      include: db.Product,
     });
     res.json(tag);
   },
@@ -65,7 +65,7 @@ const publicController = {
   productBySlug: async (req, res) => {
     const product = await db.Product.findOne({
       where: { slug: req.params.productSlug },
-      include: db.ProductImages,
+      include: [db.ProductImages, db.Tag],
     });
     res.json(product);
   },
