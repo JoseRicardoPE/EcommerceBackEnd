@@ -7,14 +7,16 @@ const publicController = {
       name = req.body[1],
       slug = req.body[2],
       description = req.body[3],
-      price = req.body[4],
-      stock = req.body[5],
-      isOutsiding = req.body[6];
+      tagId = req.body[4],
+      price = req.body[5],
+      stock = req.body[6],
+      isOutsiding = req.body[7];
     try {
       const newProduct = await db.Product.create({
         name,
         slug,
         description,
+        tagId,
         path,
         price,
         stock,
@@ -33,13 +35,15 @@ const publicController = {
         name = req.body[1],
         slug = req.body[2],
         description = req.body[3],
-        price = req.body[4],
-        stock = req.body[5],
-        isOutsiding = req.body[6];
+        tagId = req.body[4],
+        price = req.body[5],
+        stock = req.body[6],
+        isOutsiding = req.body[7];
 
       product.name = name;
       product.slug = slug;
       product.description = description;
+      product.tagId = tagId;
       product.path = path;
       product.price = price;
       product.stock = stock;
@@ -137,7 +141,7 @@ const publicController = {
         const newTag = await db.Tag.create({
           name,
           path,
-          description
+          description,
         });
         res.json({ message: "Tag creada con exito" });
       } catch (error) {
@@ -154,8 +158,7 @@ const publicController = {
         {
           name: req.body[1],
           path: req.body[0],
-          description: req.body[2]
-          
+          description: req.body[2],
         },
         {
           where: { id: req.params.id },
