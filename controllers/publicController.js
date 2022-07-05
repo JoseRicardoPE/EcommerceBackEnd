@@ -79,6 +79,7 @@ const publicController = {
 
   productByTagId: async (req, res) => {
     const productsByTag = await db.Product.findAll({
+      order: [["createdAt", "DESC"]],
       where: { tagId: req.params.tagId },
     });
     res.json(productsByTag);
