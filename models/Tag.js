@@ -15,6 +15,10 @@ module.exports = function (sequelize, Model, DataTypes) {
         type: DataTypes.TEXT,
         allowNull: false,
       },
+      description: {
+        type: DataTypes.STRING(500),
+        allowNull: false,
+      },
     },
     {
       sequelize,
