@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const formidable = require('formidable');
 
 const {
   seedAll,
@@ -19,6 +20,18 @@ const {
   getOrdersFromUser
 } = require("../controllers/publicController");
 var jwt = require("jsonwebtoken");
+
+router.post('/api/upload', (req, res, next) => {
+  const form = formidable({ multiples: true });
+
+  form.parse(req, (err, fields, files) => {
+    if (err) {
+      next(err);
+      return;
+    }
+    res.json({ fields, files });
+  });
+});
 
 router.get("/orders/from/:userId", getOrdersFromUser)
 
