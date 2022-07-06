@@ -4,14 +4,9 @@ const format = require("date-fns/format");
 
 const publicController = {
   createProduct: async (req, res) => {
-    const path = req.body[0],
-      name = req.body[1],
-      slug = req.body[2],
-      description = req.body[3],
-      tagId = req.body[4],
-      price = req.body[5],
-      stock = req.body[6],
-      isOutsiding = req.body[7];
+    const { path, name, description, tagId, price, stock, isOutsiding } =
+      req.body;
+
     try {
       const newProduct = await db.Product.create({
         name,
@@ -32,14 +27,8 @@ const publicController = {
   updateProduct: async (req, res) => {
     const product = await db.Product.findByPk(req.params.id);
     if (product) {
-      const path = req.body[0],
-        name = req.body[1],
-        slug = req.body[2],
-        description = req.body[3],
-        tagId = req.body[4],
-        price = req.body[5],
-        stock = req.body[6],
-        isOutsiding = req.body[7];
+      const { path, name, description, tagId, price, stock, isOutsiding } =
+        req.body;
 
       product.name = name;
       product.slug = slug;
@@ -104,7 +93,7 @@ const publicController = {
   createPayment: async (req, res) => {
     try {
       await db.Payment.create({
-        name: req.body[0],
+        name: req.body.name,
       });
       res.json("Se ha creado su método de pago exitosamente!");
     } catch (error) {
@@ -123,7 +112,7 @@ const publicController = {
   },
 
   updatePayment: async (req, res) => {
-    const updatedMethod = { name: req.body[0] };
+    const updatedMethod = { name: req.body.name };
     try {
       await db.Payment.update(updatedMethod, { where: { id: req.params.id } });
       res.json("se ha cambiado su método de pago");
