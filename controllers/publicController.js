@@ -42,7 +42,7 @@ const publicController = {
   },
 
   decodeJson: (req, res) => {
-    res.json(req.user);
+    res.json(req.auth.user)    
   },
 
   showAllProduct: async (req, res) => {
