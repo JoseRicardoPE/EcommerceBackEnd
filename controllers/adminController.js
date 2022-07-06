@@ -133,10 +133,7 @@ const publicController = {
   },
 
   createTag: async (req, res) => {
-    console.log(req.body);
-    const path = req.body[0];
-    const name = req.body[1];
-    const description = req.body[2];
+    const { path, name, description } = req.body;
     if (name && path && description) {
       try {
         const newTag = await db.Tag.create({
