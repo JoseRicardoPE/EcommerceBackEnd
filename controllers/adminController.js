@@ -304,7 +304,7 @@ const publicController = {
         res.json({ message: "Error, no existe este order" });
       }
     } catch (error) {
-      res.json(error);
+      res.json({ message: "error" });
     }
   },
   orderDelete: async (req, res) => {
