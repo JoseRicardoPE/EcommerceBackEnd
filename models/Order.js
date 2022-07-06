@@ -38,11 +38,6 @@ module.exports = function (sequelize, Model, DataTypes) {
       },
     },
     {
-      // hooks: {
-      //   beforeCreate: async (order, options) => {
-      //     order.creationDate = Date.now()
-      //   },
-      // },
       sequelize,
       modelName: "Order",
     }
