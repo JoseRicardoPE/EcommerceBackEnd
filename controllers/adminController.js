@@ -9,11 +9,11 @@ const publicController = {
 
     try {
       const newProduct = await db.Product.create({
+        path,
         name,
         slug,
         description,
         tagId,
-        path,
         price,
         stock,
         isOutsiding,
@@ -283,8 +283,7 @@ const publicController = {
   },
 
   orderUpdate: async (req, res) => {
-    const { cantidad, products, total, firstname, lastname, address, state } =
-      req.body;
+    const { firstname, lastname, address, products, state } = req.body;
     try {
       const editOrder = await db.Order.update(
         {
