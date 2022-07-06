@@ -151,12 +151,14 @@ const publicController = {
   },
 
   updateTag: async (req, res) => {
+    const { path, name, description } = req.body;
+
     try {
       const editTag = await db.Tag.update(
         {
-          path: req.body[0],
-          name: req.body[1],
-          description: req.body[2],
+          path,
+          name,
+          description,
         },
         {
           where: { id: req.params.id },
