@@ -25,9 +25,9 @@ const publicController = {
   getOrdersFromUser: async (req, res) => {
     const orders = await db.Order.findAll({
       where: { userId: req.params.userId },
-      order: [["createdAt", "DESC"]]
+      order: [["createdAt", "DESC"]],
     });
-    res.json(orders)
+    res.json(orders);
   },
 
   updateUser: async (req, res) => {
@@ -42,9 +42,7 @@ const publicController = {
   },
 
   decodeJson: (req, res) => {
-    token = req.body.token;
-    const decoded = jwt.decode(token, { complete: true });
-    res.json(decoded.payload);
+    res.json(req.user);
   },
 
   showAllProduct: async (req, res) => {
