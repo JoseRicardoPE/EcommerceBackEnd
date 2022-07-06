@@ -1,8 +1,6 @@
 const db = require("../models");
 var jwt = require("jsonwebtoken");
 const format = require("date-fns/format");
-console.log("--------");
-console.log(format(new Date(Date.now()), "yyyy-MM-dd"));
 
 const publicController = {
   createProduct: async (req, res) => {
@@ -269,6 +267,7 @@ const publicController = {
       userId,
       paymentId,
     } = req.body;
+    const creationDate = format(new Date(Date.now()), "dd-MM-yyyy");
     try {
       const newOrder = await db.Order.create({
         cantidad,
@@ -280,7 +279,7 @@ const publicController = {
         state,
         userId,
         paymentId,
-        creationDate: format(new Date(Date.now()), "dd-MM-yyyy"),
+        creationDate,
       });
       res.json(newOrder);
     } catch (error) {
