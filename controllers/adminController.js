@@ -38,7 +38,6 @@ const publicController = {
       product.price = price;
       product.stock = stock;
       product.isOutsiding = isOutsiding;
-      product.tagId;
       try {
         await product.save();
         res.json({ message: "Producto editado exitosamente" });
