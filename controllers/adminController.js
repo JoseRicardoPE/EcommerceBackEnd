@@ -4,7 +4,7 @@ const format = require("date-fns/format");
 
 const publicController = {
   createProduct: async (req, res) => {
-    const { path, name, description, tagId, price, stock, isOutsiding } =
+    const { path, name, slug, description, tagId, price, stock, isOutsiding } =
       req.body;
 
     try {
