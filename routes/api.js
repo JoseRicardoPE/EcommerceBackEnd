@@ -39,7 +39,7 @@ router.get("/product/outsiding", productByOutsiding);
 router.post("/users", AllUsers);
 router.get("/payment-methods", AllPaymentMethods);
 
-router.post("/login", checkJwt, login);
+router.post("/login", login);
 router.post("/register", register);
 router.post("/newpassword", checkJwt, newPassword);
 
