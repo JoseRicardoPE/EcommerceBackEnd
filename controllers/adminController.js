@@ -27,8 +27,16 @@ const publicController = {
   updateProduct: async (req, res) => {
     const product = await db.Product.findByPk(req.params.id);
     if (product) {
-      const { path, name, description, tagId, price, stock, isOutsiding } =
-        req.body;
+      const {
+        path,
+        name,
+        slug,
+        description,
+        tagId,
+        price,
+        stock,
+        isOutsiding,
+      } = req.body;
 
       product.name = name;
       product.slug = slug;
