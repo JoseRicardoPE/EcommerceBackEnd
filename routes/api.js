@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const formidable = require('formidable');
+const formidable = require("formidable");
 
 const {
   seedAll,
@@ -17,25 +17,18 @@ const {
   decodeJson,
   updateUser,
   getTag,
-  getOrdersFromUser
+  getOrdersFromUser,
 } = require("../controllers/publicController");
 var jwt = require("jsonwebtoken");
 
-router.post('/api/upload', (req, res, next) => {
-  const form = formidable({ multiples: true });
-
-  form.parse(req, (err, fields, files) => {
-    if (err) {
-      next(err);
-      return;
-    }
-    res.json({ fields, files });
-  });
+router.post("/api/upload", (req, res, next) => {
+  const form = formidable.IncomingForm();
+  res.json(form)
 });
 
-router.get("/orders/from/:userId", getOrdersFromUser)
+router.get("/orders/from/:userId", getOrdersFromUser);
 
-router.get("/tag/:id", getTag)
+router.get("/tag/:id", getTag);
 
 router.post("/decode", decodeJson);
 
