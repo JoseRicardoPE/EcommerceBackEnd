@@ -21,10 +21,18 @@ const {
 } = require("../controllers/publicController");
 var jwt = require("jsonwebtoken");
 
-router.post("/api/upload", (req, res, next) => {
-  const form = formidable.IncomingForm();
-  res.json(form)
+router.post('/upload', (req, res, next) => {
+  const form = formidable({ multiples: true });
+
+  form.parse(req, (err, fields, files) => {
+    if (err) {
+      next(err);
+      return;
+    }
+    res.json({ fields, files });
+  });
 });
+
 
 router.get("/orders/from/:userId", getOrdersFromUser);
 
