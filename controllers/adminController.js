@@ -1,6 +1,8 @@
 const db = require("../models");
 var jwt = require("jsonwebtoken");
 const format = require("date-fns/format");
+console.log("--------");
+console.log(format(new Date(Date.now()), "yyyy-MM-dd"));
 
 const publicController = {
   createProduct: async (req, res) => {
