@@ -282,12 +282,12 @@ const publicController = {
   },
 
   orderUpdate: async (req, res) => {
-    const { firstname, lastname, address, products, state } = req.body;
+    const { firstname, lastname, address, state } = req.body;
     try {
       const editOrder = await db.Order.update(
         {
           cantidad,
-          products,
+          // products,
           total,
           firstname,
           lastname,
@@ -298,11 +298,11 @@ const publicController = {
           where: { id: req.params.id },
         }
       );
-      if (editOrder) {
-        res.json({ message: "Order editada con exito" });
-      } else {
-        res.json({ message: "Error, no existe este order" });
-      }
+      // if (editOrder) {
+      res.json({ message: "Order editada con exito" });
+      // } else {
+      //   res.json({ message: "Error, no existe este order" });
+      // }
     } catch (error) {
       res.json(error);
     }
