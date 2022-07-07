@@ -187,38 +187,10 @@ const publicController = {
   },
 
   updateUser: async (req, res) => {
-    if (req.body.token) {
-      const decoded = jwt.decode(req.body.token, { complete: true });
-      const { firstname, lastname, img, email, password, phone, address } =
-        req.body;
-
-      try {
-        const editUser = await db.User.update(
-          {
-            firstname,
-            lastname,
-            img,
-            email,
-            password,
-            phone,
-            address,
-            isAdmin: decoded.payload.user.isAdmin,
-          },
-          {
-            where: { id: decoded.payload.user.id },
-          }
-        );
-        if (editUser) {
-          const user = await db.User.findByPk(decoded.payload.user.id);
-          const newToken = jwt.sign({ user }, process.env.JWT_SECURE_STRING);
-          res.json(newToken);
-        } else {
-          res.json({ message: "Error, rellene todos los campos" });
-        }
-      } catch (error) {
-        res.json(error);
-      }
-    }
+    const user = await db.User.findByPk(req.params.id)
+    user.isAdmin = !user.isAdmin
+    user.save()
+    res.send(user)
   },
 
   deleteUser: async (req, res) => {
