@@ -48,6 +48,6 @@ router.get("/order/show",showAllOrders);
 router.post("/c/order",orderCreate);
 router.get("/order/show/:id",showOrder);
 router.post("/u/order/:id",orderUpdate);
-router.post("/d/order/:id",orderDelete);
+router.get("/d/order/:id",orderDelete);
 
 module.exports = router;
