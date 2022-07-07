@@ -18,7 +18,7 @@ module.exports = function (sequelize, Model, DataTypes) {
         type: DataTypes.INTEGER,
       },
       state: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING(200),
       },
       firstname: {
         type: DataTypes.STRING(200),
