@@ -282,27 +282,23 @@ const publicController = {
   },
 
   orderUpdate: async (req, res) => {
-    const { firstname, lastname, address, state } = req.body;
+    const {newState} = req.body
     try {
-      const editOrder = await db.Order.update(
-        {
-          cantidad,
-          // products,
-          total,
-          firstname,
-          lastname,
-          address,
-          state,
-        },
-        {
-          where: { id: req.params.id },
-        }
-      );
-      if (editOrder) {
-        res.json({ message: "Order editada con exito" });
-      } else {
-        res.json({ message: "Error, no existe este order" });
+      const editOrder = await db.Order.findByPk(req.params.id);
+      if(newState === "NOT_PAYED"){
+        editOrder.state = 0
       }
+      if(newState === "WAITING"){
+        editOrder.state = 1
+      }
+      if(newState === "ON_WAY"){
+        editOrder.state = 2
+      }
+      if(newState === "DELIVER"){
+        editOrder.state = 3
+      }
+      editOrder.save()
+      res.json("Orden Editada con exito")
     } catch (error) {
       res.json({ message: "error" });
     }
