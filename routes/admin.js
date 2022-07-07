@@ -29,7 +29,7 @@ router.post("/c/product",createProduct);
 router.post("/u/product/:id",updateProduct);
 router.get("/d/product/:id",deleteProduct);
 
-router.post("/u/user/:id",updateUser);
+router.get("/u/user/:id",updateUser);
 router.get("/d/user/:id",deleteUser);
 
 router.post("/c/image",createImage);

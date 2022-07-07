@@ -190,7 +190,7 @@ const publicController = {
     const user = await db.User.findByPk(req.params.id)
     user.isAdmin = !user.isAdmin
     user.save()
-    res.send(user)
+    res.json(user)
   },
 
   deleteUser: async (req, res) => {
