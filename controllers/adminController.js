@@ -187,10 +187,10 @@ const publicController = {
   },
 
   updateUser: async (req, res) => {
-    const user = await db.User.findByPk(req.params.id)
-    user.isAdmin = !user.isAdmin
-    user.save()
-    res.json(user)
+    const user = await db.User.findByPk(req.params.id);
+    user.isAdmin = !user.isAdmin;
+    user.save();
+    res.json(user);
   },
 
   deleteUser: async (req, res) => {
@@ -254,27 +254,19 @@ const publicController = {
   },
 
   orderUpdate: async (req, res) => {
-    const {newState} = req.body
+    const { newState } = req.body;
     try {
       const editOrder = await db.Order.findByPk(req.params.id);
-      if(newState === "NOT_PAYED"){
-        editOrder.state = 0
-      }
-      if(newState === "WAITING"){
-        editOrder.state = 1
-      }
-      if(newState === "ON_WAY"){
-        editOrder.state = 2
-      }
-      if(newState === "DELIVER"){
-        editOrder.state = 3
-      }
-      editOrder.save()
-      res.json("Orden Editada con exito")
+
+      editOrder.state = newState;
+
+      editOrder.save();
+      res.json("Orden Editada con exito");
     } catch (error) {
       res.json({ message: "error" });
     }
   },
+
   orderDelete: async (req, res) => {
     try {
       const deleteOrder = await db.Order.destroy({
