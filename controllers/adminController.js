@@ -1,7 +1,31 @@
 const db = require("../models");
 var jwt = require("jsonwebtoken");
 const format = require("date-fns/format");
+
 const publicController = {
+  updateStock: async (req, res) => {
+    const cartProducts = req.body;
+    try {
+      for (const cartProduct of cartProducts) {
+        const product = await db.Product.findByPk(cartProduct.id);
+        if (product) {
+          const newStock = product.stock - cartProduct.cuantity;
+          product.stock = newStock;
+          try {
+            await product.save();
+          } catch (error) {
+            res.json(error);
+          }
+        } else {
+          res.json({ message: "Producto no encotrado" });
+        }
+      }
+      res.json({ message: "stocks editados con exito" });
+    } catch (error) {
+      res.json(error);
+    }
+  },
+
   createProduct: async (req, res) => {
     const { path, name, slug, description, tagId, price, stock, isOutsiding } =
       req.body;
