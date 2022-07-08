@@ -31,18 +31,42 @@ const publicController = {
   },
 
   updateUser: async (req, res) => {
-    const { firstname, lastname, email, phone, address } = req.body;
-    const editUser = await db.User.update(
-      { firstname, lastname, email, phone, address },
-      {
-        where: { id: req.params.userId },
+    if (req.body.token) {
+      const decoded = jwt.decode(req.body.token, { complete: true });
+      const { firstname, lastname, img, email, password, phone, address } =
+        req.body;
+
+      try {
+        const editUser = await db.User.update(
+          {
+            firstname,
+            lastname,
+            img,
+            email,
+            password,
+            phone,
+            address,
+            isAdmin: decoded.payload.user.isAdmin,
+          },
+          {
+            where: { id: decoded.payload.user.id },
+          }
+        );
+        if (editUser) {
+          const user = await db.User.findByPk(decoded.payload.user.id);
+          const newToken = jwt.sign({ user }, process.env.JWT_SECURE_STRING);
+          res.json(newToken);
+        } else {
+          res.json({ message: "Error, rellene todos los campos" });
+        }
+      } catch (error) {
+        res.json(error);
       }
-    );
-    res.json(editUser);
+    }
   },
 
   decodeJson: (req, res) => {
-    res.json(req.auth.user)    
+    res.json(req.auth.user);
   },
 
   showAllProduct: async (req, res) => {
