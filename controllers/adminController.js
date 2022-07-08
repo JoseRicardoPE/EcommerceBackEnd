@@ -15,8 +15,7 @@ const publicController = {
           try {
             await product.save();
           } catch (error) {
-            res.json({ message: "Producto no editado" });
-            res.json(error);
+            res.json({ error: error });
           }
         } else {
           res.json({ message: "Producto no encotrado" });
@@ -24,9 +23,7 @@ const publicController = {
       }
       res.json({ message: "stocks editados con exito" });
     } catch (error) {
-      res.json({ message: "Producto no editado bg" });
-      console.log(error);
-      res.json(error);
+      res.json({ error: error });
     }
   },
 
