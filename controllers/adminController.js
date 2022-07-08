@@ -4,7 +4,8 @@ const format = require("date-fns/format");
 
 const publicController = {
   updateStock: async (req, res) => {
-    const cartProducts = req.body;
+    const cartProducts = req.body.products;
+    console.log(cartProducts);
     try {
       for (const cartProduct of cartProducts) {
         const product = await db.Product.findByPk(cartProduct.id);
@@ -24,7 +25,7 @@ const publicController = {
       res.json({ message: "stocks editados con exito" });
     } catch (error) {
       res.json({ message: "Producto no editado bg" });
-
+      console.log(error);
       res.json(error);
     }
   },

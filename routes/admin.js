@@ -25,6 +25,7 @@ const {
 } = require("../controllers/adminController");
 
 router.use("/", checkJwt);
+router.post("/u/stock", updateStock);
 
 router.post("/c/product", createProduct);
 router.post("/u/product/:id", updateProduct);
@@ -50,7 +51,5 @@ router.post("/c/order", orderCreate);
 router.get("/order/show/:id", showOrder);
 router.post("/u/order/:id", orderUpdate);
 router.get("/d/order/:id", orderDelete);
-
-router.post("/u/stock", updateStock);
 
 module.exports = router;
